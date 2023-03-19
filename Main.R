@@ -1,7 +1,7 @@
 
 source("Function.R")
 
-N <- 300 ##The number of samples (100, 300 and 1000)
+N <- 100 ##The number of samples (100, 300 and 1000)
 P <- 2
 beta <- c(2, -1)
 data_type <- 1 ## "1" represents balanced data, "2" represents unbalanced data
