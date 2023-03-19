@@ -5,7 +5,7 @@ N <- 100 ##The number of samples (100, 300 and 1000)
 P <- 2
 beta <- c(2, -1)
 data_type <- 1 ## "1" represents balanced data, "2" represents unbalanced data
-nloop <- 500 
+nloop <- 200 
 
 set.seed(12)
 tau_values <- c(0.2, 0.5, 0.8)
