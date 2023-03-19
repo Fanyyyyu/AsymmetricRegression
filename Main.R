@@ -1,11 +1,11 @@
 
 source("Function.R")
 
-N <- 300 ##The number of samples (100, 300 and 1000)
+N <- 100 
 P <- 2
 beta <- c(2, -1)
 data_type <- 1 ## "1" represents balanced data, "2" represents unbalanced data
-nloop <- 200 
+nloop <- 500 
 
 set.seed(12)
 tau_values <- c(0.2, 0.5, 0.8)
