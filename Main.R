@@ -1,7 +1,6 @@
 
 source("Function.R")
 
-N <- 100 #我不想再是啦！
 P <- 2
 beta <- c(2, -1)
 data_type <- 1 ## "1" represents balanced data, "2" represents unbalanced data
