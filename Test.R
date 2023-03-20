@@ -32,3 +32,17 @@ NWEst[Y == 1 & NWEst == 0] <- 1e-5
 put <- c(tau * log(NWEst[Y == 1]), (1 - tau) * log(1 - NWEst[Y == 0]))
 put
 
+library(evmix)
+library("matrixStats")
+dist_mat <- abs(outer(V, V, "-"))
+cl <- makeCluster(2)
+diag(dist_mat) <- 1e-6
+
+registerDoParallel(cl)
+kernel_mat <- foreach(i = 1:nrow(dist_mat), .combine = list) %dopar% {
+  # apply(dist_mat[i, ]/bw, 1, dnorm)
+  dnorm(dist_mat[i, ]/bw, mean = 0, sd = rowSds(dist_mat[i, ]/bw))
+  print(i)
+}
+stopCluster(c1)
+

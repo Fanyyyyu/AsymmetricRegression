@@ -6,17 +6,15 @@ library("evmix")
 library("np")
 library("foreach")
 library("doParallel")
+library("parallel")
 
-NWEst <- function(index, y, bw, kernel_type){
-  
+NWEst <- function(index, y, bw, kernel_type) {
   dist_mat <- abs(outer(index, index, "-"))
-  # registerDoParallel(cores = 2) 
-  # len <- length(y)
-  # kernel_mat <- tryCatch({
-  #   foreach(i = 1:len, .combine = rbind) %dopar% {
-  #     kernel_type(dist_mat[i, ]/bw)
-  #   }
-  # })
+  # c1 <- makeCluster(4)
+  # registerDoParallel(c1)
+  # kernel_mat <- foreach(i = 1:nrow(dist_mat), .combine = rbind) %dopar% {
+  #   kernel_type(dist_mat[i, ]/bw)
+  # }
   # kernel_mat <- t(kernel_mat)
   kernel_mat <- kernel_type(dist_mat/bw)
   diag(kernel_mat) <- 0
@@ -25,6 +23,7 @@ NWEst <- function(index, y, bw, kernel_type){
     row_sums[row_sums == 0] <- 1e-6
   }
   return(y %*% kernel_mat / row_sums)
+  stopCluster(c1)
 }
 
 ASBRM <- function(x, y, v, tau){

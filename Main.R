@@ -1,13 +1,13 @@
 
 source("Function.R")
 
-N <- 100 #我不想再是啦！
+N <- 300
 P <- 2
 beta <- c(2, -1)
 data_type <- 1 ## "1" represents balanced data, "2" represents unbalanced data
-nloop <- 500 
+nloop <- 1
 
-set.seed(12)
+# set.seed(12)
 tau_values <- c(0.2, 0.5, 0.8)
 Result_list <- list()
 ResultSE_list <- list()
@@ -23,6 +23,9 @@ for (i in seq_along(Result_list)) {
   mean_lst[[i]] <- mean(Result_list[[i]])
 }
 mean_lst
+
+source("Function.R")
+NWEst(V, Y, 0.32, kernel_type = kdgaussian)
 
 # filename <- paste0("N=", N, ",", "data_type=", data_type, ".png")
 # png(filename)
